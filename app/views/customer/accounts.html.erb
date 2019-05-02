@@ -1,0 +1,39 @@
+<% if @accounts.present? %>
+    <h1> Accounts </h1>
+    <table class="table">
+    <thead>
+      <tr>
+        <th> ID </th>
+        <th> Name </th>
+        <th> Balance </th>
+        <th> Currency </th>
+        <th> Nature </th>
+        <th> Actions </th>
+      </tr>
+    </thead>
+        <% @accounts.each do |account| %>
+      <tr>
+        <td>
+          <%= account["id"] %>
+        </td>
+        <td>
+          <%= account["name"] %>
+        </td>
+        <td>
+          <%= account["balance"] %>
+        </td>
+        <td>
+          <%= account["nature"] %>
+        </td>
+        <td>
+          <%= account["currency_code"] %>
+        </td>
+        <td>
+          <%= link_to "Transactions", transactions_path(account["connection_id"], account["id"]) %>
+        </td>
+      </tr>
+        <% end %>
+    </table>
+<% end %>
+
+<%= render "layouts/navigation" %>

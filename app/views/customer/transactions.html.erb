@@ -1,0 +1,40 @@
+<% if @transactions.present? %>
+    <h1> Transactions </h1>
+    <table class="table">
+    <thead>
+      <tr>
+        <th> ID </th>
+        <th> Status </th>
+        <th> Made on </th>
+        <th> Amount </th>
+        <th> Currency Code </th>
+        <th> Description </th>
+      </tr>
+    </thead>
+        <% @transactions.each do |transaction| %>
+          <tr>
+            <td>
+              <%= transaction["id"] %>
+            </td>
+            <td>
+              <%= transaction["status"] %>
+            </td>
+            <td>
+              <%= transaction["made_on"] %>
+            </td>
+            <td>
+              <%= transaction["amount"] %>
+            </td>
+            <td>
+              <%= transaction["currency_code"] %>
+            </td>
+            <td>
+              <%= transaction["description"] %>
+            </td>
+          </tr>
+        <% end %>
+
+    </table>
+<% end %>
+
+<%= render "layouts/navigation", back: true %>

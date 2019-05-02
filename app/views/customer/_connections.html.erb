@@ -1,0 +1,32 @@
+<% if connections.present? %>
+  <h1> Connections </h1>
+	<table class="table">
+    <thead>
+      <tr>
+        <th> ID </th>
+        <th> Name </th>
+        <th> Status </th>
+        <th> Country Code </th>
+        <th> Created At </th>
+        <th> Actions </th>
+      </tr>
+    </thead>
+		<% connections.each do |connection| %>
+      <tr>
+        <td> <%= connection["id"] %> </td>
+        <td> <%= connection["provider_name"] %> </td>
+        <td> <%= connection["status"] %> </td>
+        <td> <%= connection["country_code"] %> </td>
+        <td> <%= connection["created_at"] %> </td>
+        <% if connection["status"] != "inactive" %>
+          <td>
+            <%= link_to "Accounts", accounts_path(connection["id"]) %>
+            <%= button_to "Reconnect", { action: :reconnect_session, connection_id: connection["id"] } %>
+            <%= button_to "Refresh", { action: :refresh_session, connection_id: connection["id"] }, :disabled => !refresh_possible?(connection) %>
+            <%= button_to "Destroy", { action: :destroy_session, connection_secret: connection["secret"], connection_id: connection["id"] } %>
+          </td>
+        <% end %>
+      </tr>
+		<% end %>
+	</table>
+<% end %>

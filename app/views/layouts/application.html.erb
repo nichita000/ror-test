@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RorTest</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <% unless notice.nil? %>
+      <p class="notification"><%= notice %></p>
+    <% end %>
+    <% unless alert.nil? %>
+      <p class="notification is-warning"><%= alert %></p>
+    <% end %>
+
+    <div class="app-container">
+      <%= render 'layouts/header' %>
+
+      <%= yield %>
+    </div>
+  </body>
+</html>
+
+<!-- TODO: Make wise -->
